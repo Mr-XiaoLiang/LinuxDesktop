@@ -5,7 +5,10 @@ import com.lollipoppp.desktop.App
 
 
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
+    Window(
+            onCloseRequest = ::exitApplication,
+            title = "LinuxDesktop",
+    ) {
         App()
     }
 }
