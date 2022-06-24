@@ -1,4 +1,4 @@
-package com.lollipoppp.desktop
+package com.lollipoppp.desktop.utils
 
 import java.io.File
 import javax.swing.filechooser.FileSystemView
