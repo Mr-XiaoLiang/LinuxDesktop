@@ -1,32 +1,47 @@
 package com.lollipoppp.desktop
 
+import androidx.compose.runtime.Composable
+import com.lollipoppp.desktop.PreferencesHelper.Companion.localPreferences
+
 object DesktopFile {
 
-    fun createValue(
-            appName: String,
-            comment: String,
-            genericName: String,
-            iconPath: String,
-            execPath: String,
-            appType: AppType,
-            categories: List<Categories>,
-            version: String,
-            startupNotify: Boolean,
-            terminal: Boolean,
-    ): String {
+    private const val FILE_SUFFIX = ".desktop"
+
+    private val preferences = localPreferences()
+
+    var fileDir by preferences.with(FileHelper.defaultDesktopPath)
+
+    fun fixFileName(name: String): String {
+        return if (name.endsWith(FILE_SUFFIX, true)) {
+            name
+        } else {
+            name + FILE_SUFFIX
+        }
+    }
+
+    fun check(
+        info: Desktop
+    ): Boolean {
+//        if (info.fileDir().isEmpty()) {
+//
+//        }
+        return true
+    }
+
+    fun createValue(info: Desktop): String {
         return StringBuilder()
-                .addLine("[Desktop Entry]")
-                .addLine("Name=", appName)
-                .addLine("GenericName=", genericName.ifBlank { appName })
-                .addLine("Comment=", comment)
-                .addLine("Version=", version)
-                .addLine("StartupNotify=", startupNotify.toString().lowercase())
-                .addLine("Terminal=", terminal.toString().lowercase())
-                .addLine("Type=", appType.name)
-                .addLine("Exec=", execPath)
-                .addLine("Icon=", iconPath)
-                .addLine("Categories=", getCategoriesValue(categories))
-                .toString()
+            .addLine("[Desktop Entry]")
+            .addLine("Name=", info.appName())
+            .addLine("GenericName=", info.genericName().ifBlank { info.appName() })
+            .addLine("Comment=", info.comment())
+            .addLine("Version=", info.version())
+            .addLine("StartupNotify=", info.startupNotify().toString().lowercase())
+            .addLine("Terminal=", info.terminal().toString().lowercase())
+            .addLine("Type=", info.appType().name)
+            .addLine("Exec=", info.execPath())
+            .addLine("Icon=", info.iconPath())
+            .addLine("Categories=", getCategoriesValue(info.categories()))
+            .toString()
     }
 
     fun getCategoriesValue(categories: List<Categories>): String {
@@ -91,5 +106,19 @@ object DesktopFile {
         /** 系统管理 */
         Utility("系统管理")
     }
+    class Desktop(
+        val fileName: () -> String,
+        val fileDir: () -> String,
+        val appName: () -> String,
+        val comment: () -> String,
+        val genericName: () -> String,
+        val iconPath: () -> String,
+        val execPath: () -> String,
+        val appType: () -> AppType,
+        val categories: () -> List<Categories>,
+        val version: () -> String,
+        val startupNotify: () -> Boolean,
+        val terminal: () -> Boolean,
+    )
 
 }
