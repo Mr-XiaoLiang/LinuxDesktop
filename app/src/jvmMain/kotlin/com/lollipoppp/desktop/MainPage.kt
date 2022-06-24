@@ -1,15 +1,7 @@
 package com.lollipoppp.desktop
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import com.lollipoppp.desktop.Page.Input
 import com.lollipoppp.desktop.Page.Write
 import com.lollipoppp.desktop.utils.DesktopFile
@@ -39,18 +31,6 @@ fun App() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun slideByAnimation(expand: Boolean, content: @Composable AnimatedVisibilityScope.() -> Unit) {
-    AnimatedVisibility(
-        visible = expand,
-        enter = slideInVertically { it },
-        exit = slideOutVertically { it },
-        modifier = Modifier.fillMaxSize()
-    ) {
-        content()
     }
 }
 
