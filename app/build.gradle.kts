@@ -13,6 +13,7 @@ repositories {
     google()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    mavenLocal { "file:///Users/lollipop/Develop/Java/LocalMaven" }
 }
 
 kotlin {
@@ -30,6 +31,10 @@ kotlin {
         }
         val jvmTest by getting
     }
+}
+
+dependencies {
+//    implementation("com.lollipoppp.vector:VectorClip:1.0-SNAPSHOT")
 }
 
 compose.desktop {
