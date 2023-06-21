@@ -37,6 +37,10 @@ dependencies {
 //    implementation("com.lollipoppp.vector:VectorClip:1.0-SNAPSHOT")
 }
 
+/**
+ * 相关文档
+ * https://github.com/JetBrains/compose-multiplatform/tree/master/tutorials/Native_distributions_and_local_execution
+ */
 compose.desktop {
     application {
         mainClass = "MainKt"
@@ -44,6 +48,18 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Exe, TargetFormat.Deb)
             packageName = "linuxDesktop"
             packageVersion = "1.0.0"
+            macOS {
+                // 设置启动图标
+                iconFile.set(project.file("icon.icns"))
+            }
+            windows {
+                // 设置启动图标
+                iconFile.set(project.file("icon.ico"))
+            }
+            linux {
+                // 设置启动图标
+                iconFile.set(project.file("icon.png"))
+            }
         }
     }
 }
