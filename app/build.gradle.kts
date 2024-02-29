@@ -1,8 +1,8 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-    kotlin("multiplatform")
+//    kotlin("multiplatform")
+    kotlin("jvm")
     id("org.jetbrains.compose")
 }
 
@@ -10,30 +10,31 @@ group = "com.lollipoppp"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    google()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    mavenLocal { "file:///Users/lollipop/Develop/Java/LocalMaven" }
+    google()
+//    mavenLocal { "file:///home/lollipop/Develop/Java/LocalMaven" }
 }
 
-kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "11"
-        }
-        withJava()
-    }
-    sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
-            }
-        }
-        val jvmTest by getting
-    }
-}
+//kotlin {
+//    jvm {
+//        compilations.all {
+//            kotlinOptions.jvmTarget = "11"
+//        }
+//        withJava()
+//    }
+//    sourceSets {
+//        val jvmMain by getting {
+//            dependencies {
+//                implementation(compose.desktop.currentOs)
+//            }
+//        }
+//        val jvmTest by getting
+//    }
+//}
 
 dependencies {
+    implementation(compose.desktop.currentOs)
 //    implementation("com.lollipoppp.vector:VectorClip:1.0-SNAPSHOT")
 }
 
