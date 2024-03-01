@@ -47,8 +47,8 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Exe, TargetFormat.Deb)
-            packageName = "linuxDesktop"
-            packageVersion = "1.0.0"
+            packageName = "Linux.Desktop"
+            packageVersion = "1.0.1"
             macOS {
                 // 设置启动图标
                 iconFile.set(project.file("icon.icns"))
